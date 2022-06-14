@@ -1,24 +1,45 @@
 import logo from './logo.svg';
 import './App.css';
+import Sidebar from './Sidebar';
+import Topbar from './Topbar';
+import Dashboard from './Dashboard';
+import Users from './Users';
+import Admins from './Admins';
+import Manager from './Manager';
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import CreateUser from './CreateUser';
+import UserView from './UserView';
+import UserEdit from './UserEdit';
+import Employee from './Employee';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+    <div id="wrapper">
+      <Sidebar/>
+      <div id="content-wrapper" class="d-flex flex-column">
+      <div id="content">
+        <Topbar/>
+        <div className="container-fluid">          
+        <Routes>
+         <Route path="/dashboard" element={<Dashboard />} />
+         <Route path="/users" element={<Users />} />
+         <Route path="/employee" element={<Employee />} />
+         <Route path="/admins" element={<Admins />} />
+         <Route path="/manager" element={<Manager />} />
+         <Route path="/user-create" element={<CreateUser />} />
+         <Route path="/user-view/:id" element={<UserView />} />
+         <Route path="/user-edit/:id" element={<UserEdit />} />
+         {/* /user-view/1 */}
+         {/* /user-view/2 */}
+         {/* /user-view/abc */}     
+        </Routes>
+        </div>        
+      </div>
+      </div>
+    </div>    
+    </BrowserRouter>
   );
 }
 
